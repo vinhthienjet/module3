@@ -38,9 +38,10 @@ sdt varchar(10)
 create table chi_tiet_phieu_xuat(
 don_gia_xuat double,
 so_luong_xuat int,
+ma_phieu_xuat int,
+ma_vat_tu int ,
 
-ma_phieu_xuat int primary key auto_increment,
-ma_vat_tu int,
+primary key(ma_phieu_xuat,ma_vat_tu),
 
 FOREIGN KEY (ma_phieu_xuat) references phieu_xuat(so_phieu_xuat),
 FOREIGN KEY (ma_vat_tu) references vat_tu(ma_vat_tu)
@@ -52,9 +53,9 @@ FOREIGN KEY (ma_vat_tu) references vat_tu(ma_vat_tu)
 create table chi_tiet_phieu_nhap(
 don_gia_nhap double,
 so_luong_nhap int,
-
-ma_phieu_nhap int primary key auto_increment,
+ma_phieu_nhap int,
 ma_vat_tu int,
+primary key(ma_phieu_nhap,ma_vat_tu),
 
 FOREIGN KEY (ma_phieu_nhap) references phieu_nhap(so_phieu_nhap),
 FOREIGN KEY(ma_vat_tu) references vat_tu(ma_vat_tu)
@@ -74,8 +75,10 @@ FOREIGN KEY(ma_vat_tu) references vat_tu(ma_vat_tu)
 
 -- bang cung_cap tb don_hang n-n tb nha_cung_cap --
 create table cung_cap(
-ma_nha_cung_cap int primary key auto_increment,
+ma_nha_cung_cap int,
 ma_don_hang int,
+
+primary key(ma_nha_cung_cap,ma_don_hang),
 
 FOREIGN KEY (ma_nha_cung_cap) references nha_cung_cap(ma_nha_cung_cap),
 FOREIGN KEY(ma_don_hang) references don_dat_hang(so_don_hang)
